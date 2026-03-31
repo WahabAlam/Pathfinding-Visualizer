@@ -5,7 +5,6 @@ An interactive web app for visualizing and comparing three pathfinding algorithm
 - Greedy Best-First Search
 - Uniform Cost Search (UCS)
 
-This README is written to align with the final presentation rubric (problem/motivation, algorithm explanation, system design, demo quality, and communication readiness) while also documenting project structure.
 
 ## 1) Clarity of Problem and Motivation
 
@@ -51,7 +50,6 @@ Together they provide a clean comparison across:
 - Heuristic-only search (Greedy)
 - Cost + heuristic search (A*)
 
-This makes algorithm behavior and tradeoffs easy to explain during demo and Q&A.
 
 ## 3) System Design and Implementation
 
@@ -69,9 +67,7 @@ This makes algorithm behavior and tradeoffs easy to explain during demo and Q&A.
 - Animation is async and guarded by `isAnimating` to prevent conflicting user actions mid-run.
 - Results table is preserved across algorithm runs for the same maze, then reset on new maze/board clear.
 
-## 4) Demonstration Quality (No Slides Required)
-
-Your instructor asked for a running-project demo only. A clean demo flow:
+## 4) Demonstration Quality (
 
 1. Start app and show controls, legend, and empty results table.
 2. Set start and end nodes; mention auto-maze generation.
@@ -80,21 +76,21 @@ Your instructor asked for a running-project demo only. A clean demo flow:
 5. Use speed slider to show animation control.
 6. Show `Clear Search` vs `Clear Board`.
 
-What to call out if asked about issues/errors:
+If asked about issues/errors:
 - If start/end is missing, app intentionally blocks run and shows an alert.
 - Inputs are intentionally locked during animation to avoid inconsistent state.
 - Time metric measures algorithm computation time (not animation delay).
 
 ## 5) Communication and Delivery Readiness
 
-Use this short speaking outline:
+Short speaking outline:
 1. Problem + motivation (why algorithm comparison matters)
 2. Why these 3 algorithms (different search strategies)
 3. Data flow from input -> algorithm -> animation -> metrics
 4. Live run and comparison table interpretation
 5. Conclusion: tradeoff between exploration effort and path quality
 
-Common Q&A prep:
+Common Q&A:
 - Why Manhattan heuristic?  
   Because movement is 4-directional and unit cost, so Manhattan distance is a natural heuristic.
 - Why include UCS if costs are uniform?  
