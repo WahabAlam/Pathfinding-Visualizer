@@ -1,0 +1,201 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f5f7fb;
+  color: #222;
+}
+
+.app {
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+h1 {
+  margin-bottom: 16px;
+}
+
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 12px;
+  align-items: center;
+}
+
+button,
+select,
+input[type="range"] {
+  padding: 10px 14px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background: white;
+  cursor: pointer;
+}
+
+button:hover,
+select:hover {
+  background: #f0f0f0;
+}
+
+.status {
+  margin-bottom: 12px;
+  font-weight: bold;
+}
+
+.metrics {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+  margin-bottom: 18px;
+}
+
+.metrics p {
+  margin: 0;
+}
+
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+}
+
+.legend-box {
+  width: 18px;
+  height: 18px;
+  border: 1px solid #999;
+  display: inline-block;
+}
+
+.start-box {
+  background: #2ecc71;
+}
+
+.end-box {
+  background: #e74c3c;
+}
+
+.wall-box {
+  background: #2c3e50;
+}
+
+.visited-box {
+  background: #87ceeb;
+}
+
+.path-box {
+  background: #f1c40f;
+}
+
+.content-layout {
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+}
+
+.grid-panel {
+  flex: 0 0 auto;
+}
+
+.results-panel {
+  width: 360px;
+  min-width: 360px;
+  background: white;
+  border: 1px solid #dcdcdc;
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.results-panel h2 {
+  margin-top: 0;
+  margin-bottom: 8px;
+  font-size: 22px;
+}
+
+.results-note {
+  margin-top: 0;
+  margin-bottom: 14px;
+  font-size: 13px;
+  color: #666;
+  line-height: 1.4;
+}
+
+.results-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.results-table th,
+.results-table td {
+  border: 1px solid #ddd;
+  padding: 10px 8px;
+  text-align: center;
+}
+
+.results-table th {
+  background: #f3f4f6;
+  font-weight: 700;
+}
+
+.results-table tbody tr:nth-child(even) {
+  background: #fafafa;
+}
+
+.empty-row td {
+  color: #666;
+  font-style: italic;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(41, 18px);
+  grid-template-rows: repeat(41, 18px);
+  gap: 1px;
+  width: fit-content;
+  background: #bbb;
+  border: none;
+}
+
+.cell {
+  width: 18px;
+  height: 18px;
+  background: white;
+  cursor: pointer;
+  transition: background-color 0.12s ease;
+}
+
+.cell.start {
+  background: #2ecc71;
+}
+
+.cell.end {
+  background: #e74c3c;
+}
+
+.cell.wall {
+  background: #2c3e50;
+}
+
+.cell.visited {
+  background: #87ceeb;
+}
+
+.cell.path {
+  background: #f1c40f;
+}

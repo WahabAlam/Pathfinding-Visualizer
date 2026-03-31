@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pathfinding Visualizer</title>
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+  <div class="app">
+    <h1>Pathfinding Visualizer</h1>
+
+    <div class="controls">
+      <button id="setStartBtn">Set Start</button>
+      <button id="setEndBtn">Set End</button>
+      <button id="setWallBtn">Draw Walls</button>
+      <button id="clearBtn">Clear Board</button>
+      <button id="clearSearchBtn">Clear Search</button>
+
+      <select id="algorithmSelect">
+        <option value="astar">A*</option>
+        <option value="greedy">Greedy Best-First</option>
+        <option value="ucs">Uniform Cost Search</option>
+      </select>
+
+      <button id="runBtn">Run Algorithm</button>
+
+      <label for="speedSlider">Speed:</label>
+      <input type="range" id="speedSlider" min="1" max="100" value="40" />
+      <span id="speedValue">40</span>
+    </div>
+
+    <div class="status">
+      <span id="modeLabel">Mode: Draw Walls</span>
+    </div>
+
+    <div class="metrics" id="metrics">
+      <p>Nodes Explored: <span id="nodesExplored">0</span></p>
+      <p>Path Length: <span id="pathLength">0</span></p>
+      <p>Time: <span id="timeTaken">0</span> ms</p>
+    </div>
+
+    <div class="legend">
+      <div class="legend-item">
+        <span class="legend-box start-box"></span>
+        <span>Start</span>
+      </div>
+      <div class="legend-item">
+        <span class="legend-box end-box"></span>
+        <span>Goal</span>
+      </div>
+      <div class="legend-item">
+        <span class="legend-box wall-box"></span>
+        <span>Wall</span>
+      </div>
+      <div class="legend-item">
+        <span class="legend-box visited-box"></span>
+        <span>Visited</span>
+      </div>
+      <div class="legend-item">
+        <span class="legend-box path-box"></span>
+        <span>Path</span>
+      </div>
+    </div>
+
+    <div class="content-layout">
+      <div class="grid-panel">
+        <div id="grid" class="grid"></div>
+      </div>
+
+      <div class="results-panel">
+        <h2>Current Maze Results</h2>
+        <p class="results-note">This table resets only when a new maze is generated or the board is cleared.</p>
+
+        <table class="results-table">
+          <thead>
+            <tr>
+              <th>Algorithm</th>
+              <th>Nodes</th>
+              <th>Path</th>
+              <th>Time (ms)</th>
+            </tr>
+          </thead>
+          <tbody id="resultsTableBody">
+            <tr class="empty-row">
+              <td colspan="4">No runs yet for this maze.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="./main.js"></script>
+</body>
+</html>
