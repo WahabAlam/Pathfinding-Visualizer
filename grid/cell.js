@@ -1,4 +1,5 @@
 export function createCell(row, col) {
+  // Canonical per node state shared by grid rendering and all search algorithms
   return {
     row,
     col,

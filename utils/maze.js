@@ -2,6 +2,7 @@ export function generateMaze(gridData, startCell, endCell) {
   const rows = gridData.length;
   const cols = gridData[0].length;
 
+  // Reset search metadata and start from a fully walled grid except endpoints
   for (const row of gridData) {
     for (const cell of row) {
       cell.g = Infinity;
@@ -15,6 +16,7 @@ export function generateMaze(gridData, startCell, endCell) {
     }
   }
 
+  // Fisher Yates shuffle so carve directions are randomized
   function shuffle(array) {
     for (let i = array.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
@@ -26,6 +28,7 @@ export function generateMaze(gridData, startCell, endCell) {
     return r > 0 && r < rows - 1 && c > 0 && c < cols - 1;
   }
 
+  // Recursive backtracker maze cells are odd indexed snap values onto odd coordinates
   function nearestOdd(value, min, max) {
     let v = Math.max(min, Math.min(value, max));
     if (v % 2 === 0) {
@@ -35,6 +38,7 @@ export function generateMaze(gridData, startCell, endCell) {
     return v;
   }
 
+  // Map start end including border positions to valid interior odd anchors
   function getAnchor(cell) {
     if (cell.row === 0) {
       return {
@@ -73,9 +77,11 @@ export function generateMaze(gridData, startCell, endCell) {
   const startAnchor = getAnchor(startCell);
   const endAnchor = getAnchor(endCell);
 
+  // Seed the maze carve from the start anchor
   gridData[startAnchor.row][startAnchor.col].isWall = false;
 
   function carve(r, c) {
+    // DFS carve in 2 cell steps opening the wall between current and next cells
     const directions = [
       [-2, 0],
       [2, 0],
@@ -99,18 +105,23 @@ export function generateMaze(gridData, startCell, endCell) {
     }
   }
 
+  // Generate the main perfect maze from the start anchor
   carve(startAnchor.row, startAnchor.col);
 
+  // Ensure start and end connect cleanly from their exact positions into the maze
   connectCellToAnchor(startCell, startAnchor, gridData);
   connectCellToAnchor(endCell, endAnchor, gridData);
 
+  // Add loops to reduce dead ends and create alternative routes
   addExtraOpenings(gridData, startCell, endCell, 30);
 
+  // Keep endpoints traversable
   startCell.isWall = false;
   endCell.isWall = false;
 }
 
 function connectCellToAnchor(cell, anchor, gridData) {
+  // Carve a straight Manhattan tunnel from a boundary cell to its anchor
   let r = cell.row;
   let c = cell.col;
 
@@ -135,6 +146,7 @@ function addExtraOpenings(gridData, startCell, endCell, count = 30) {
   let attempts = 0;
   const maxAttempts = 3000;
 
+  // Randomly remove selected walls that bridge parallel corridors
   while (added < count && attempts < maxAttempts) {
     attempts++;
 
